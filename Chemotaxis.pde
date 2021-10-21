@@ -22,7 +22,7 @@ PImage img;
    //move and show the bacteria  
    for(int i = 0 ; i < anglerFish.length; i++){
     anglerFish[i].show(); 
-    anglerFish[i].avoid(); 
+    anglerFish[i].attract(); 
    }
  }  
  void mousePressed()
@@ -31,28 +31,38 @@ PImage img;
   }
  
  class Bacteria    
- {     
-   //lots of java!  
+ {       
    int mySize, myX, myY;
    
-   //Constructor
-   Bacteria(){
+   Bacteria() //constructor
+   {
     myX = (int)(Math.random()*250)+10;
     myY = (int)(Math.random()*250)+10;
    }
    
-   void show(){
+   void show()
+   {
      image(img, myX, myY, width/10, height/10);
    }
    
-   void avoid(){
-     if (mouseX - myX <= 0 && dist(myX, myY, mouseX, mouseY) <= 50) { 
+   void attract()
+   {
+     if (mouseX - myX <= 0 && dist(myX, myY, mouseX, mouseY) <= 150) { 
         myX = myX + (int)(Math.random()*2)-6; //-2, -1, 0, 1, 2, 3, 4,
       }
-     if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= 50) { 
+     if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= 150) { 
         myX = myX + (int)(Math.random()*6)-2; //-6 TO -4
       }
-     /*
+    
+      //if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= 20) { 
+     //  myY = myY + (int)(Math.random()*7)-2; //-2, -1, 0, 1, 2, 3, 4,
+      //}
+   }
+
+}   
+ 
+  /* 
+   void avoid(){
       // if mouse is on the LEFT of the ballooon, RANDOMLY WALK TOWARDS THE RIGHT
       if (mouseX - myX <= 0 && dist(myX, myY, mouseX, mouseY) <= 20) { 
         myX = myX + (int)(Math.random()*6)-2; //-2, -1, 0, 1, 2, 3, 4,
@@ -61,11 +71,5 @@ PImage img;
       if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= 20) { 
         myX = myX + (int)(Math.random()*2)-6; //-6 TO -4
       }
-      */
-      
-      //if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= 20) { 
-     //  myY = myY + (int)(Math.random()*7)-2; //-2, -1, 0, 1, 2, 3, 4,
-      //}
-   }
-   
- }   
+   } 
+   */
