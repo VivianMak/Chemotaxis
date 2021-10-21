@@ -1,44 +1,71 @@
- //declare bacteria variables here   
+//declare bacteria variables here   
+//Bacteria fish;
+
+//array of fishies
+Bacteria[] anglerFish = new Bacteria [5];
+PImage img;
+ 
  void setup()   
  {     
- 	//initialize bacteria variables here   
+   size (500,500);
+   background(5,23,79);
+   //initialize bacteria variables here
+   //fish = new Bacteria(250,250);
+   //initialize array of fish
+   for(int i = 0 ; i < anglerFish.length; i++){
+    anglerFish[i] = new Bacteria(); 
+   }
+   img = loadImage("anglerfish.png");
  }   
  void draw()   
  {    
- 	//move and show the bacteria   
+   //move and show the bacteria  
+   for(int i = 0 ; i < anglerFish.length; i++){
+    anglerFish[i].show(); 
+    anglerFish[i].avoid(); 
+   }
  }  
+ void mousePressed()
+  {
+    redraw();
+  }
+ 
  class Bacteria    
  {     
- 	//lots of java!   
- }    
- 
- /*void setup(){
-  size(300,300);
-}
-
-void draw(){
-  fill(165,142,71);
-  stroke(133,92,4);
-  strokeWeight(4);
-  ellipse(150,150, 150,100);
-  line(90,175, 215,175);
-}  
-
-
-  noFill();
-  bezier(340, 80, 40, 40, 360, 360, 60, 320);
-  stroke(0);
-  bezier(120, 80,  320, 20,  320, 300,  120, 300);
-  
-}
-*/
-
-PImage img;
-void setup() {
-  size(500,500);
-  img = loadImage("anglerfish.png");
-}
-
-void draw() {
-  image(img, 0, 0);
-}
+   //lots of java!  
+   int mySize, myX, myY;
+   
+   //Constructor
+   Bacteria(){
+    myX = (int)(Math.random()*250)+10;
+    myY = (int)(Math.random()*250)+10;
+   }
+   
+   void show(){
+     image(img, myX, myY, width/10, height/10);
+   }
+   
+   void avoid(){
+     if (mouseX - myX <= 0 && dist(myX, myY, mouseX, mouseY) <= 50) { 
+        myX = myX + (int)(Math.random()*2)-6; //-2, -1, 0, 1, 2, 3, 4,
+      }
+     if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= 50) { 
+        myX = myX + (int)(Math.random()*6)-2; //-6 TO -4
+      }
+     /*
+      // if mouse is on the LEFT of the ballooon, RANDOMLY WALK TOWARDS THE RIGHT
+      if (mouseX - myX <= 0 && dist(myX, myY, mouseX, mouseY) <= 20) { 
+        myX = myX + (int)(Math.random()*6)-2; //-2, -1, 0, 1, 2, 3, 4,
+      }
+      // if mouse is on the RIGHT of the ballooon, RANDOMLY WALK TOWARDS THE LEFT
+      if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= 20) { 
+        myX = myX + (int)(Math.random()*2)-6; //-6 TO -4
+      }
+      */
+      
+      //if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= 20) { 
+     //  myY = myY + (int)(Math.random()*7)-2; //-2, -1, 0, 1, 2, 3, 4,
+      //}
+   }
+   
+ }   
