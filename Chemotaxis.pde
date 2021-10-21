@@ -8,7 +8,7 @@ PImage img;
  void setup()   
  {     
    size (500,500);
-   background(5,23,79);
+   //background(5,23,79);
    //initialize bacteria variables here
    //fish = new Bacteria(250,250);
    //initialize array of fish
@@ -19,6 +19,7 @@ PImage img;
  }   
  void draw()   
  {    
+ background(5,23,79);
    //move and show the bacteria  
    for(int i = 0 ; i < anglerFish.length; i++){
     anglerFish[i].show(); 
