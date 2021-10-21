@@ -2,7 +2,7 @@
 //Bacteria fish;
 
 //array of fishies
-Bacteria[] anglerFish = new Bacteria [5];
+Bacteria[] anglerFish = new Bacteria [100];
 PImage img;
  
  void setup()   
@@ -19,16 +19,32 @@ PImage img;
  }   
  void draw()   
  {    
-   //move and show the bacteria
-   background(5,23,79);
-   for(int i = 0 ; i < anglerFish.length; i++){
-    anglerFish[i].show(); 
-    anglerFish[i].attract(); 
+   textSize(20);
+   text("Where Are They??", 140, 100);
+   img = loadImage("anglerfish.png");
+   textSize(10);
+   text("click for light", 225, 475);
+   // if moused pressed, move and show the bacteria  
+   if(light == true){
+     
+     background(5,23,79);
+     textSize(20);
+     text("Welcome to the Midnight Zone", 100, 50);
+     for(int i = 0 ; i < anglerFish.length; i++){
+      anglerFish[i].show(); 
+      anglerFish[i].attract(); 
+     }
    }
  }  
+ 
+ boolean light = false;
  void mousePressed()
   {
     redraw();
+    //fill(252, 252, 3);
+    fill(255);
+    ellipse(mouseX,mouseY, 100,100);
+    light = true;
   }
  
  class Bacteria    
@@ -50,16 +66,21 @@ PImage img;
    {
      // if mouse is on the LEFT, move LEFT
      if (mouseX - myX <= 0 && dist(myX, myY, mouseX, mouseY) <= 150) { 
-        myX = myX + (int)(Math.random()*2)-4; 
+        myX = myX + (int)(Math.random()*2)-2; 
       }
       // if mouse is on the RIGHT, move RIGHT
      if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= 150) { 
-        myX = myX + (int)(Math.random()*4)+2;
+        myX = myX + (int)(Math.random()*4);
       }
-    
-      //if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= 20) { 
-     //  myY = myY + (int)(Math.random()*7)-2; //-2, -1, 0, 1, 2, 3, 4,
-      //}
+      // if mouse is BELOW, move DOWN
+     if (mouseY - myY > 0 && dist(myX, myY, mouseX, mouseY) <= 150) { 
+        myY = myY + (int)(Math.random()*4);
+      }
+      // if mouse is ABOVE, move UP
+     if (mouseY - myY <= 0 && dist(myX, myY, mouseX, mouseY) <= 150) { 
+        myY = myY + (int)(Math.random()*2)-2;
+      }
+      
    }
 
 }   
