@@ -47,11 +47,13 @@ PImage img;
    
    void attract()
    {
+     // if mouse is on the LEFT, move LEFT
      if (mouseX - myX <= 0 && dist(myX, myY, mouseX, mouseY) <= 150) { 
-        myX = myX + (int)(Math.random()*2)-6; //-2, -1, 0, 1, 2, 3, 4,
+        myX = myX + (int)(Math.random()*2)-4; 
       }
+      // if mouse is on the RIGHT, move RIGHT
      if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= 150) { 
-        myX = myX + (int)(Math.random()*6)-2; //-6 TO -4
+        myX = myX + (int)(Math.random()*4)+2;
       }
     
       //if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= 20) { 
