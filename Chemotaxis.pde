@@ -2,10 +2,14 @@
 Bacteria[] anglerFish = new Bacteria [200];
 // declare the angler fish image
 PImage img;
+//boolean yPosition = false;
 // declare colors
 int r;
 int g;
 int b;
+
+// each time you click the fishes will have a longer range to follow u
+int lightClick = 40;
  
 void setup()   
  {     
@@ -42,6 +46,13 @@ void draw()
      textSize(10);
      text("click for light", 225, 470);
      
+     /*
+     for(int i = 0 ; i < anglerFish.length; i++)
+     {
+      if (anglerFish[i].myY > 250 && anglerFish[i].myY < 400)
+        yPosition = true;
+     }
+     */
      //CHANGE BACKGROUND COLOR depending on MOUSEY to simulate the ocean layers
      //background(0,0,50); - hadal zone
      //background(1,24,85); - abyssal zone
@@ -67,8 +78,10 @@ void draw()
      else if (mouseY < 400){
        r = 1; g = 24; b = 85;
        text("Welcome to the Abyssal Zone", 100, 50);
-       textSize(15);
-       text("Anglerfishes: yayy we're home", 150, 490);
+       //if(yPosition == true){
+         textSize(15);
+         text("Anglerfishes: yayy we're home", 150, 490);
+       //}
      }
      else if (mouseY < 500){
        r = 0; g = 0; b = 50;
@@ -85,6 +98,9 @@ void draw()
     fill(255);
     ellipse(mouseX,mouseY, 75,75);
     light = true;
+    
+    // increase range
+    lightClick += 10;
   }
 
 
@@ -108,19 +124,19 @@ class Bacteria
   void attract() // literally self explanatory :L
    {
      // if mouse is on the LEFT, move LEFT
-     if (mouseX - myX <= 0 && dist(myX, myY, mouseX, mouseY) <= 250) { 
+     if (mouseX - myX <= 0 && dist(myX, myY, mouseX, mouseY) <= lightClick) { 
         myX = myX + (int)(Math.random()*2)-3; 
       }
       // if mouse is on the RIGHT, move RIGHT
-     if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= 250) { 
+     if (mouseX - myX > 0 && dist(myX, myY, mouseX, mouseY) <= lightClick) { 
         myX = myX + (int)(Math.random()*4)+2;
       }
       // if mouse is BELOW, move DOWN
-     if (mouseY - myY > 0 && dist(myX, myY, mouseX, mouseY) <= 250) { 
+     if (mouseY - myY > 0 && dist(myX, myY, mouseX, mouseY) <= lightClick) { 
         myY = myY + (int)(Math.random()*4)+2;
       }
       // if mouse is ABOVE, move UP
-     if (mouseY - myY <= 0 && dist(myX, myY, mouseX, mouseY) <= 250) { 
+     if (mouseY - myY <= 0 && dist(myX, myY, mouseX, mouseY) <= lightClick) { //250
         myY = myY + (int)(Math.random()*2)-3;
       }
    }
